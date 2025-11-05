@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- 狀態管理 ---
-  let currentStep = 1;
+  let currentStep = 1; 
   const totalSteps = 3;
 
   // --- DOM 元素 ---

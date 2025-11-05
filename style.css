@@ -8,7 +8,7 @@
 /* 顯示的步驟 */
 .form-step.active {
   display: block;
-}
+} 
 
 /* 隱藏 radio input */
 .custom-radio input[type="radio"] {
