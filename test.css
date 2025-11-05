@@ -1,0 +1,116 @@
+/* 使用 Noto Sans TC 作為中文字體 */
+body {
+    font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    /* 啟用平滑滾動 (UX) */
+    scroll-behavior: smooth;
+}
+
+/* 專業色票設定 */
+:root {
+    --color-primary: #1a237e; /* 專業深藍 */
+    --color-secondary: #c5a560; /* 尊榮金 */
+    --color-gray-light: #e0e0e0; /* 淺灰 (進度條) */
+}
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.border-secondary { border-color: var(--color-secondary); }
+
+/* --- 深色模式 (加分項目) --- */
+.dark .bg-primary { background-color: #283593; } /* 深色模式的主色調微調 */
+.dark .bg-gray-custom { background-color: #1a202c; }
+.dark .text-gray-custom { color: #e2e8f0; }
+
+/* --- 頁首固定 --- */
+.header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+/* --- FAQ 手風琴 (互動功能) --- */
+.faq-item .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+.faq-item.open .faq-answer {
+    max-height: 200px; /* 根據內容調整 */
+    transition: max-height 0.5s ease-in;
+}
+.faq-item .icon-plus {
+    transition: transform 0.3s ease;
+}
+.faq-item.open .icon-plus {
+    transform: rotate(45deg);
+}
+
+/* --- 表單驗證 (UX) --- */
+.form-input.error {
+    border-color: #ef4444; /* 紅色 */
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+.error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    height: 1.25rem; /* 佔位，防止排版跳動 */
+}
+
+/* --- 簡易動畫 (加分項目) --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* 動畫延遲 */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+
+/* 確保動畫只在可見時觸發一次 */
+.fade-in {
+     opacity: 0; /* 初始隱藏 */
+}
+
+/* --- (新增) 步驟進度條樣式 --- */
+.step-item .step-circle {
+    background-color: var(--color-gray-light);
+    border: 2px solid var(--color-gray-light);
+}
+.step-item .step-label {
+    color: var(--color-gray-light);
+}
+.step-line {
+    background-color: var(--color-gray-light);
+}
+
+/* 進行中的步驟 (Active) */
+.step-item.active .step-circle {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+.step-item.active .step-label {
+    color: var(--color-secondary);
+}
+
+/* 已完成的步驟 (Completed) */
+.step-item.completed .step-circle {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+.step-item.completed .step-label {
+    color: var(--color-primary);
+}
+.dark .step-item.completed .step-label {
+    color: #fff; /* 深色模式下已完成的文字 */
+}
+
+/* 已完成的連線 (Completed) */
+.step-line.completed {
+    background-color: var(--color-primary);
+}
