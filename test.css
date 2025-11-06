@@ -1,54 +1,15 @@
-/* style.css
-  已遷移至 Bootstrap 5.3
-*/
-
-/* --- Keyframes --- */
-@keyframes fadeIn {
-  0% { 
-    opacity: 0; 
-    transform: translateY(10px);
-  }
-  100% { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+.navbar {
+  padding-top: 2rem;   /* 預設大約是 0.5rem，可依需要加大 */
+  padding-bottom: 2rem;
 }
 
-/* --- 表單步驟 --- */ 
-.form-step {
-  display: none;
-  animation: fadeIn 0.3s ease-out;
+
+.btn-purple {
+  background-color: #6f42c1;
+  color: white;
 }
 
-.form-step.active {
-  display: block;
+.btn-purple:hover {
+  background-color: #5a32a3;
+  color: white;
 }
-
-/* --- 自訂 Radio 按鈕 (使用 Bootstrap 變數) --- */
-.custom-radio input[type="radio"] {
-  display: none;
-}
-
-.custom-radio label {
-  transition: all 0.2s ease-in-out;
-  border-width: 2px !important; /* 覆蓋 BS 預設 */
-  border-color: var(--bs-border-color);
-  background-color: var(--bs-body-bg);
-}
-
-.custom-radio label:hover {
-  border-color: var(--bs-primary-border-subtle);
-  background-color: var(--bs-primary-bg-subtle);
-}
-
-/* 選中的 radio 按鈕樣式 (使用 BS 變數) */
-.custom-radio input[type="radio"]:checked + label {
-  border-color: var(--bs-primary);
-  background-color: var(--bs-primary-bg-subtle);
-  color: var(--bs-primary-text-emphasis);
-  box-shadow: var(--bs-box-shadow-sm);
-}
-
-/* 深色模式的樣式現在由 Bootstrap 變數自動處理，
-  不需要 [data-bs-theme="dark"] 覆寫，除非有特殊需求。
-*/
