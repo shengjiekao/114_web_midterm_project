@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- 狀態管理 ---
-  let currentStep = 1; 
+  let currentStep = 1;
   const totalSteps = 3;
 
   // --- DOM 元素 ---
@@ -38,12 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const emailError = document.getElementById('email-error');
   const privacyError = document.getElementById('privacy-error');
 
-  // --- 隱私權 Modal (Bootstrap 5.3 初始化) ---
-  const privacyModalEl = document.getElementById('privacy-modal');
-  // 檢查元素是否存在，避免錯誤
-  const privacyModalInstance = privacyModalEl ? new bootstrap.Modal(privacyModalEl) : null;
+  // --- 隱私權 Modal ---
+  const privacyModal = document.getElementById('privacy-modal');
   const privacyButton = document.getElementById('privacy-button');
-  const closeModalBtn = document.getElementById('close-modal'); // 雖然 BS 會自動處理 data-bs-dismiss，保留 ID 以防萬一
+  const closeModalBtn = document.getElementById('close-modal');
   const modalAgreeBtn = document.getElementById('modal-agree-btn');
 
   // --- 深色模式 (多個按鈕) ---
@@ -63,18 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn.disabled = (stepNumber === 1);
 
     if (stepNumber === totalSteps) {
-      // **[修改]** 使用 d-none 替換 hidden
-      nextBtn.classList.add('d-none');
-      submitBtn.classList.remove('d-none');
+      nextBtn.classList.add('hidden');
+      submitBtn.classList.remove('hidden');
     } else {
-      nextBtn.classList.remove('d-none');
-      submitBtn.classList.add('d-none');
+      nextBtn.classList.remove('hidden');
+      submitBtn.classList.add('hidden');
     }
 
     if (stepNumber > totalSteps) {
-      navContainer.classList.add('d-none');
+      navContainer.classList.add('hidden');
     } else {
-      navContainer.classList.remove('d-none');
+      navContainer.classList.remove('hidden');
     }
   }
 
@@ -87,26 +84,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const stepCheck = step.querySelector('.step-check');
 
       step.classList.remove('active', 'inactive', 'completed');
-      // **[修改]** 替換為 Bootstrap 顏色 class
-      circle.classList.remove('text-bg-primary', 'text-bg-success', 'bg-light', 'text-muted');
-      text.classList.remove('text-primary', 'text-muted', 'text-dark');
-      stepNumberSpan.classList.remove('d-none');
-      stepCheck.classList.add('d-none');
+      circle.classList.remove('bg-indigo-600', 'dark:bg-indigo-500', 'text-white', 'bg-green-500', 'dark:bg-green-400', 'bg-gray-200', 'dark:bg-gray-600');
+      text.classList.remove('text-indigo-600', 'dark:text-indigo-400', 'text-gray-500', 'dark:text-gray-400', 'text-gray-900', 'dark:text-gray-100');
+      stepNumberSpan.classList.remove('hidden');
+      stepCheck.classList.add('hidden');
 
       if (stepNum < stepNumber) {
         step.classList.add('completed');
-        circle.classList.add('text-bg-success'); // 完成：綠色
-        text.classList.add('text-dark');
-        stepNumberSpan.classList.add('d-none');
-        stepCheck.classList.remove('d-none');
+        circle.classList.add('bg-green-500', 'dark:bg-green-400', 'text-white');
+        text.classList.add('text-gray-900', 'dark:text-gray-100');
+        stepNumberSpan.classList.add('hidden');
+        stepCheck.classList.remove('hidden');
       } else if (stepNum === stepNumber) {
         step.classList.add('active');
-        circle.classList.add('text-bg-primary'); // 目前：主題色
-        text.classList.add('text-primary');
+        circle.classList.add('bg-indigo-600', 'dark:bg-indigo-500', 'text-white');
+        text.classList.add('text-indigo-600', 'dark:text-indigo-400');
       } else {
         step.classList.add('inactive');
-        circle.classList.add('bg-light', 'text-muted'); // 未來：灰色
-        text.classList.add('text-muted');
+        circle.classList.add('bg-gray-200', 'dark:bg-gray-600', 'text-gray-500', 'dark:text-gray-300');
+        text.classList.add('text-gray-500', 'dark:text-gray-400');
       }
     });
   }
@@ -114,22 +110,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function validateStep1() {
     const selected = document.querySelector('input[name="category"]:checked');
     if (!selected) {
-      step1Error.classList.remove('d-none'); // **[修改]**
+      step1Error.classList.remove('hidden');
       return false;
     }
-    step1Error.classList.add('d-none'); // **[修改]**
+    step1Error.classList.add('hidden');
     return true;
   }
 
   function validateStep2() {
     if (description.value.trim() === '') {
-      step2Error.classList.remove('d-none'); // **[修改]**
-      description.classList.add('is-invalid'); // **[新增]** BS 驗證
+      step2Error.classList.remove('hidden');
       description.focus();
       return false;
     }
-    step2Error.classList.add('d-none'); // **[修改]**
-    description.classList.remove('is-invalid'); // **[新增]** BS 驗證
+    step2Error.classList.add('hidden');
     return true;
   }
 
@@ -141,31 +135,25 @@ document.addEventListener('DOMContentLoaded', () => {
   function validateStep3() {
     let isValid = true;
 
-    // **[修改]** 重置 BS 驗證 class
-    [nameError, phoneError, emailError, privacyError].forEach(err => err.classList.add('d-none'));
-    [nameInput, phoneInput, emailInput, privacyCheckbox].forEach(el => el.classList.remove('is-invalid'));
+    [nameError, phoneError, emailError, privacyError].forEach(err => err.classList.add('hidden'));
 
     if (nameInput.value.trim() === '') {
-      nameError.classList.remove('d-none');
-      nameInput.classList.add('is-invalid'); // **[新增]**
+      nameError.classList.remove('hidden');
       isValid = false;
     }
 
     if (phoneInput.value.trim() === '') {
-      phoneError.classList.remove('d-none');
-      phoneInput.classList.add('is-invalid'); // **[新增]**
+      phoneError.classList.remove('hidden');
       isValid = false;
     }
 
     if (!isValidEmail(emailInput.value)) {
-      emailError.classList.remove('d-none');
-      emailInput.classList.add('is-invalid'); // **[新增]**
+      emailError.classList.remove('hidden');
       isValid = false;
     }
 
     if (!privacyCheckbox.checked) {
-      privacyError.classList.remove('d-none');
-      privacyCheckbox.classList.add('is-invalid'); // **[新增]**
+      privacyError.classList.remove('hidden');
       isValid = false;
     }
 
@@ -212,47 +200,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 提供給超連結的假下載提示
   window.showMockDownloadMessage = () => {
-    mockDownloadMessage.classList.remove('d-none'); // **[修改]**
+    mockDownloadMessage.classList.remove('hidden');
     setTimeout(() => {
-      mockDownloadMessage.classList.add('d-none'); // **[修改]**
+      mockDownloadMessage.classList.add('hidden');
     }, 3000);
   };
 
-  // **[修改]** Modal 控制 (使用 Bootstrap API)
+  // Modal 控制
   function openModal() {
-    if (privacyModalInstance) {
-      privacyModalInstance.show();
-    }
+    privacyModal.classList.remove('hidden');
   }
   function closeModal() {
-    if (privacyModalInstance) {
-      privacyModalInstance.hide();
-    }
+    privacyModal.classList.add('hidden');
   }
 
-  // **[修改]** 深色模式 (使用 data-bs-theme)
+  // 深色模式
   function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-    const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-bs-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcons(newTheme === 'dark');
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateThemeIcons(isDark);
   }
-
-  // **[修改]** 更新 Bootstrap Icons (使用 d-none)
   function updateThemeIcons(isDark) {
     themeToggles.forEach(toggle => {
-      // **[修改]** 選擇 .bi-moon 和 .bi-sun
-      const moonIcon = toggle.querySelector('.bi-moon');
-      const sunIcon = toggle.querySelector('.bi-sun');
-      if (moonIcon && sunIcon) {
-        if (isDark) {
-          moonIcon.classList.add('d-none');
-          sunIcon.classList.remove('d-none');
-        } else {
-          moonIcon.classList.remove('d-none');
-          sunIcon.classList.add('d-none');
-        }
+      const moonIcon = toggle.querySelector('ion-icon[name="moon-outline"]');
+      const sunIcon = toggle.querySelector('ion-icon[name="sunny-outline"]');
+      if (isDark) {
+        moonIcon.classList.add('hidden');
+        sunIcon.classList.remove('hidden');
+      } else {
+        moonIcon.classList.remove('hidden');
+        sunIcon.classList.add('hidden');
       }
     });
   }
@@ -265,65 +242,58 @@ document.addEventListener('DOMContentLoaded', () => {
   categoryRadios.forEach(radio => {
     radio.addEventListener('change', (e) => {
       const label = document.querySelector(`label[for="${e.target.id}"]`);
-      const categoryName = label.querySelector('.fw-semibold').textContent;
+      const categoryName = label.querySelector('.font-semibold').textContent;
       selectedCategoryName.textContent = categoryName;
-      downloadPrompt.classList.remove('d-none'); // **[修改]**
-      step1Error.classList.add('d-none'); // **[修改]**
+      downloadPrompt.classList.remove('hidden');
+      step1Error.classList.add('hidden');
     });
   });
 
   description.addEventListener('input', () => {
     if (description.value.trim() !== '') {
-      step2Error.classList.add('d-none'); // **[修改]**
-      description.classList.remove('is-invalid'); // **[新增]**
+      step2Error.classList.add('hidden');
     }
   });
 
   [nameInput, phoneInput, emailInput].forEach(input => {
     input.addEventListener('input', () => {
-      input.classList.remove('is-invalid'); // **[新增]**
       const errorEl = document.getElementById(`${input.id}-error`);
-      if (errorEl) errorEl.classList.add('d-none'); // **[修改]**
+      if (errorEl) errorEl.classList.add('hidden');
     });
   });
 
   privacyCheckbox.addEventListener('change', () => {
     if (privacyCheckbox.checked) {
-      privacyError.classList.add('d-none'); // **[修改]**
-      privacyCheckbox.classList.remove('is-invalid'); // **[新增]**
+      privacyError.classList.add('hidden');
     }
   });
 
-  if (privacyButton) {
-    privacyButton.addEventListener('click', openModal);
-  }
-  if (modalAgreeBtn) {
-    modalAgreeBtn.addEventListener('click', () => {
-      privacyCheckbox.checked = true;
-      privacyCheckbox.classList.remove('is-invalid');
-      privacyError.classList.add('d-none');
-      closeModal(); // BS 5.3 已經會因為 data-bs-dismiss 自動關閉，但保留
-    });
-  }
-  // **[移除]** Modal backdrop click 監聽器 (Bootstrap 會自動處理)
+  privacyButton.addEventListener('click', openModal);
+  closeModalBtn.addEventListener('click', closeModal);
+  modalAgreeBtn.addEventListener('click', () => {
+    privacyCheckbox.checked = true;
+    privacyError.classList.add('hidden');
+    closeModal();
+  });
+  privacyModal.addEventListener('click', (e) => {
+    if (e.target === privacyModal) closeModal();
+  });
 
   themeToggles.forEach(toggle => {
     toggle.addEventListener('click', toggleTheme);
   });
 
-  // **[修改]** 初始化：主題
+  // 初始化：主題
   const savedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-    document.documentElement.setAttribute('data-bs-theme', 'dark');
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
     updateThemeIcons(true);
   } else {
-    document.documentElement.setAttribute('data-bs-theme', 'light');
     updateThemeIcons(false);
   }
 
   // 初始化：顯示第一步
   showStep(currentStep);
 });
+
 // --- JavaScript 邏輯結束 ---

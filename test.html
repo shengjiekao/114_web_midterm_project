@@ -1,232 +1,367 @@
-    <!DOCTYPE html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>許高智權律師事務所</title>
-  
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  
-  <!-- 自訂 CSS（選用） -->
-  <style>
-    /* 你可以在這裡加入自訂樣式 */
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>許高智權律師事務所</title>
 
-    .hero-section {
-      background: rgba(0, 4, 8, 0.76);
-      color: white;
-    }
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    .hero-section .display-4 {
-        font-weight: 700;
-    }
+    <!-- Google Fonts -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/> -->
 
-    body {
-    font-family: '微軟正黑體', sans-serif;
-    }
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-  </style>
-  <link rel="stylesheet" href="test.css" />
+    <!-- Tailwind 自訂設定：保留在 head（必須在 Tailwind 啟動時就存在） -->
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', '"Noto Sans TC"', 'sans-serif'],
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeOut: {
+                '0%': { opacity: '1', transform: 'translateY(0)' },
+                '100%': { opacity: '0', transform: 'translateY(-10px)' },
+              },
+            },
+            animation: {
+              fadeIn: 'fadeIn 0.3s ease-out',
+              fadeOut: 'fadeOut 0.3s ease-in',
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- 抽出的樣式檔 -->
+    <link rel="stylesheet" href="test.css" />
 </head>
-<body>
-  <!-- 1. 導航列 -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-    <a class="navbar-brand" href="#">超牛逼律師事務所</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#home">首頁</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">關於我們</a></li>
-        <li class="nav-item"><a class="nav-link" href="#skills">服務項目</a></li>
-        <li class="nav-item"><a class="nav-link" href="#portfolio">成功案例</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">立即諮詢</a></li>
-      </ul>
+<body class="font-sans bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
+  <!-- 頂部導航列 -->
+  <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-40">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">IP Sentry 智權律師</h1>
+
+      <!-- 桌面版導航 -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="#services" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">服務項目</a>
+        <a href="#faq" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">常見問答</a>
+        <a href="#consult" class="py-2 px-4 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition-colors">立即諮詢</a>
+        <button id="theme-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none" aria-label="切換深色模式">
+          <ion-icon name="moon-outline" class="w-6 h-6 block dark:hidden"></ion-icon>
+          <ion-icon name="sunny-outline" class="w-6 h-6 hidden dark:block"></ion-icon>
+        </button>
+      </div>
+
+      <!-- 行動版：先保留僅切換模式 -->
+      <div class="md:hidden">
+        <button id="theme-toggle-mobile" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none" aria-label="切換深色模式">
+          <ion-icon name="moon-outline" class="w-6 h-6 block dark:hidden"></ion-icon>
+          <ion-icon name="sunny-outline" class="w-6 h-6 hidden dark:block"></ion-icon>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. Hero -->
+    <section class="bg-white dark:bg-gray-800">
+      <div class="container mx-auto px-6 py-24 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">保護您的創意資產</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+          從商標、專利到著作權，IP Sentry 智權律師提供全方位的法律諮詢服務，捍衛您的智慧財產權。
+        </p>
+        <a href="#consult" class="py-3 px-8 rounded-lg text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-lg">
+          立即開始免費諮詢
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. 服務項目 -->
+    <section id="services" class="py-20 bg-gray-50 dark:bg-gray-800">
+      <div class="container mx-auto px-6">
+        <h3 class="text-3xl font-bold text-center mb-12">我們的服務項目</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 text-center transition-transform transform hover:-translate-y-2">
+            <ion-icon name="pricetag-outline" class="w-16 h-16 mx-auto mb-6 text-indigo-600 dark:text-indigo-400"></ion-icon>
+            <h4 class="text-2xl font-semibold mb-3">商標權</h4>
+            <p class="text-gray-600 dark:text-gray-300">包含商標檢索、申請註冊、異議、評定、廢止，以及商標侵權訴訟。</p>
+          </div>
+          <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 text-center transition-transform transform hover:-translate-y-2">
+            <ion-icon name="bulb-outline" class="w-16 h-16 mx-auto mb-6 text-indigo-600 dark:text-indigo-400"></ion-icon>
+            <h4 class="text-2xl font-semibold mb-3">專利權</h4>
+            <p class="text-gray-600 dark:text-gray-300">發明、新型、設計專利申請，專利地圖分析、舉發，以及專利侵權民事訴訟。</p>
+          </div>
+          <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 text-center transition-transform transform hover:-translate-y-2">
+            <ion-icon name="book-outline" class="w-16 h-16 mx-auto mb-6 text-indigo-600 dark:text-indigo-400"></ion-icon>
+            <h4 class="text-2xl font-semibold mb-3">著作權</h4>
+            <p class="text-gray-600 dark:text-gray-300">著作權登記、授權合約擬定、網路侵權排除、盜版蒐證與法律追訴。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. FAQ -->
+    <section id="faq" class="py-20 bg-white dark:bg-gray-900">
+      <div class="container mx-auto px-6 max-w-3xl">
+        <h3 class="text-3xl font-bold text-center mb-12">常見問答 (FAQ)</h3>
+        <div class="space-y-4">
+          <details class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+            <summary class="flex justify-between items-center cursor-pointer font-semibold">
+              Q: 我需要花多少錢申請商標？
+              <ion-icon name="chevron-down-outline" class="w-5 h-5 accordion-icon"></ion-icon>
+            </summary>
+            <div class="mt-4 text-gray-600 dark:text-gray-300">
+              A: 申請商標的費用包含政府規費和事務所服務費。規費會依據您申請的類別多寡而定。服務費則視案件複雜度而定。建議您點選「立即諮詢」並提供初步資料，我們將為您提供免費的初步報價。
+            </div>
+          </details>
+          <details class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+            <summary class="flex justify-between items-center cursor-pointer font-semibold">
+              Q: 我的點子（Idea）可以申請專利嗎？
+              <ion-icon name="chevron-down-outline" class="w-5 h-5 accordion-icon"></ion-icon>
+            </summary>
+            <div class="mt-4 text-gray-600 dark:text-gray-300">
+              A: 純粹的「點子」或「概念」通常無法直接申請專利。專利法要求保護的是具體的「技術實施方案」。您需要將點子具體化為可行的技術、方法或產品結構，才能進行專利申請。
+            </div>
+          </details>
+          <details class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+            <summary class="flex justify-between items-center cursor-pointer font-semibold">
+              Q: 我在網路上轉貼文章，有註明出處，這樣算侵權嗎？
+              <ion-icon name="chevron-down-outline" class="w-5 h-5 accordion-icon"></ion-icon>
+            </summary>
+            <div class="mt-4 text-gray-600 dark:text-gray-300">
+              A: 仍然有很高的侵權風險。註明出處僅是符合「著作人格權」中的姓名表示權，但您仍未取得「著作財產權」中的「公開傳輸權」授權。除非您的使用符合「合理使用」的範圍（例如：個人非營利使用、少量引用等），否則仍需取得原作者同意。
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 立即諮詢（多步驟表單） -->
+    <section id="consult" class="py-20 bg-gray-100 dark:bg-gray-900">
+      <div class="container mx-auto px-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden max-w-4xl mx-auto">
+          <h3 class="text-3xl font-bold text-center pt-10 pb-4">立即諮詢</h3>
+          <p class="text-center text-gray-600 dark:text-gray-300 px-6 mb-6">請依循下列步驟，讓我們了解您的需求。</p>
+
+          <div class="md:flex">
+            <!-- 側邊進度條 -->
+            <aside class="w-full md:w-1/3 bg-gray-50 dark:bg-gray-800 p-8 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700">
+              <h2 class="text-xl font-semibold mb-6">諮詢進度</h2>
+              <nav>
+                <ul class="space-y-6">
+                  <li id="progress-1" class="flex items-center progress-step active">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-600 dark:bg-indigo-500 text-white flex items-center justify-center font-bold">
+                      <span class="step-number">1</span>
+                      <ion-icon name="checkmark-outline" class="w-5 h-5 step-check hidden"></ion-icon>
+                    </div>
+                    <span class="ml-4 text-sm font-medium text-indigo-600 dark:text-indigo-400">選擇法律類別</span>
+                  </li>
+                  <li id="progress-2" class="flex items-center progress-step inactive">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-300 flex items-center justify-center font-bold">
+                      <span class="step-number">2</span>
+                      <ion-icon name="checkmark-outline" class="w-5 h-5 step-check hidden"></ion-icon>
+                    </div>
+                    <span class="ml-4 text-sm font-medium text-gray-500 dark:text-gray-400">簡述諮詢內容</span>
+                  </li>
+                  <li id="progress-3" class="flex items-center progress-step inactive">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-300 flex items-center justify-center font-bold">
+                      <span class="step-number">3</span>
+                      <ion-icon name="checkmark-outline" class="w-5 h-5 step-check hidden"></ion-icon>
+                    </div>
+                    <span class="ml-4 text-sm font-medium text-gray-500 dark:text-gray-400">預約律師</span>
+                  </li>
+                </ul>
+              </nav>
+            </aside>
+
+            <!-- 表單內容 -->
+            <div class="w-full md:w-2/3 p-8">
+              <form id="consultation-form" novalidate>
+                <!-- 步驟 1 -->
+                <section id="step-1" class="form-step active">
+                  <h3 class="text-2xl font-bold mb-6">步驟 1: 選擇法律類別</h3>
+                  <p class="mb-6 text-gray-600 dark:text-gray-300">請選擇您最需要諮詢的智慧財產權類別。</p>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 custom-radio">
+                    <div>
+                      <input type="radio" id="cat-trademark" name="category" value="trademark" required>
+                      <label for="cat-trademark" class="block w-full text-center p-6 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-indigo-500 dark:hover:border-indigo-400">
+                        <ion-icon name="pricetag-outline" class="w-10 h-10 mx-auto mb-2"></ion-icon>
+                        <span class="font-semibold">商標權</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input type="radio" id="cat-patent" name="category" value="patent" required>
+                      <label for="cat-patent" class="block w-full text-center p-6 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-indigo-500 dark:hover:border-indigo-400">
+                        <ion-icon name="bulb-outline" class="w-10 h-10 mx-auto mb-2"></ion-icon>
+                        <span class="font-semibold">專利權</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input type="radio" id="cat-copyright" name="category" value="copyright" required>
+                      <label for="cat-copyright" class="block w-full text-center p-6 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-indigo-500 dark:hover:border-indigo-400">
+                        <ion-icon name="book-outline" class="w-10 h-10 mx-auto mb-2"></ion-icon>
+                        <span class="font-semibold">著作權</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input type="radio" id="cat-other" name="category" value="other" required>
+                      <label for="cat-other" class="block w-full text-center p-6 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-indigo-500 dark:hover:border-indigo-400">
+                        <ion-icon name="help-circle-outline" class="w-10 h-10 mx-auto mb-2"></ion-icon>
+                        <span class="font-semibold">其他智權問題</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <p id="step-1-error" class="text-red-500 text-sm mt-2 hidden">請至少選擇一個類別。</p>
+
+                  <div id="download-prompt" class="mt-6 p-4 bg-indigo-50 dark:bg-indigo-900 border border-indigo-200 dark:border-indigo-700 rounded-lg hidden">
+                    <div class="flex items-center">
+                      <ion-icon name="document-text-outline" class="w-6 h-6 text-indigo-600 dark:text-indigo-300 mr-3"></ion-icon>
+                      <div>
+                        <p class="text-sm font-medium text-indigo-800 dark:text-indigo-200">
+                          您已選擇 <span id="selected-category-name" class="font-bold"></span> 類別。
+                        </p>
+                        <p class="text-sm text-indigo-700 dark:text-indigo-300 mt-1">
+                          建議您先下載
+                          <a href="#" id="download-link" class="font-bold underline hover:text-indigo-500" onclick="event.preventDefault(); showMockDownloadMessage(this);">
+                            「諮詢準備清單.pdf」
+                          </a>
+                          以加速諮詢流程。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <p id="mock-download-message" class="text-green-600 dark:text-green-400 text-sm mt-2 hidden">（範例提示：文件將開始下載...）</p>
+                </section>
+
+                <!-- 步驟 2 -->
+                <section id="step-2" class="form-step">
+                  <h3 class="text-2xl font-bold mb-6">步驟 2: 簡述諮詢內容</h3>
+                  <p class="mb-6 text-gray-600 dark:text-gray-300">請簡要描述您遇到的問題或需要諮詢的事項。（例如：我想申請 XX 產品的商標... / 我收到了專利侵權警告...）</p>
+
+                  <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">諮詢內容</label>
+                    <textarea id="description" name="description" rows="8" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-100" placeholder="請在此輸入您的問題..." required></textarea>
+                    <p id="step-2-error" class="text-red-500 text-sm mt-2 hidden">請輸入您的諮詢內容。</p>
+                  </div>
+                </section>
+
+                <!-- 步驟 3 -->
+                <section id="step-3" class="form-step">
+                  <h3 class="text-2xl font-bold mb-6">步驟 3: 預約律師</h3>
+                  <p class="mb-6 text-gray-600 dark:text-gray-300">請填寫您的聯絡方式，我們將盡快與您聯繫確認諮詢時間。</p>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label for="name" class="block text-sm font-medium">您的姓名</label>
+                      <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700" required>
+                      <p id="name-error" class="text-red-500 text-sm mt-1 hidden">請輸入您的姓名。</p>
+                    </div>
+                    <div>
+                      <label for="phone" class="block text-sm font-medium">聯絡電話</label>
+                      <input type="tel" id="phone" name="phone" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700" required>
+                      <p id="phone-error" class="text-red-500 text-sm mt-1 hidden">請輸入您的聯絡電話。</p>
+                    </div>
+                    <div class="sm:col-span-2">
+                      <label for="email" class="block text-sm font-medium">Email</label>
+                      <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700" required>
+                      <p id="email-error" class="text-red-500 text-sm mt-1 hidden">請輸入有效的 Email 地址。</p>
+                    </div>
+                  </div>
+
+                  <div class="mt-6">
+                    <div class="flex items-start">
+                      <div class="flex h-5 items-center">
+                        <input id="privacy" name="privacy" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" required>
+                      </div>
+                      <div class="ml-3 text-sm">
+                        <label for="privacy" class="font-medium text-gray-700 dark:text-gray-300">我已閱讀並同意</label>
+                        <button type="button" id="privacy-button" class="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 underline">隱私權條款</button>
+                      </div>
+                    </div>
+                    <p id="privacy-error" class="text-red-500 text-sm mt-1 hidden">您必須同意隱私權條款才能提交。</p>
+                  </div>
+                </section>
+
+                <!-- 成功訊息 -->
+                <section id="step-success" class="form-step text-center">
+                  <ion-icon name="checkmark-circle-outline" class="w-20 h-20 text-green-500 mx-auto mb-4"></ion-icon>
+                  <h3 class="text-2xl font-bold mb-4">預約提交成功！</h3>
+                  <p class="text-gray-600 dark:text-gray-300">
+                    感謝您的填寫。我們已收到您的諮詢請求，將於 1-2 個工作天內透過 Email 或電話與您聯繫，確認後續諮詢事宜。
+                  </p>
+                </section>
+
+                <!-- 導航按鈕 -->
+                <div id="form-navigation" class="mt-8 pt-5 border-t border-gray-200 dark:border-gray-700 flex justify-between">
+                  <button type="button" id="prev-btn" class="py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">上一步</button>
+                  <button type="button" id="next-btn" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">下一步</button>
+                  <button type="button" id="submit-btn" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 hidden">提交預約</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-gray-300 py-12">
+      <div class="container mx-auto px-6 text-center">
+        <p>&copy; 2024 IP Sentry 智權律師事務所. All rights reserved.</p>
+        <p class="text-sm mt-2">（此為範例網站，非真實律師事務所）</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- 隱私權條款 Modal -->
+  <div id="privacy-modal" class="fixed inset-0 z-50 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-[80vh] overflow-hidden flex flex-col">
+      <div class="px-6 py-4 flex justify-between items-center border-b dark:border-gray-700">
+        <h2 id="modal-title" class="text-lg font-semibold">隱私權條款</h2>
+        <button id="close-modal" class="p-1 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700" aria-label="關閉">
+          <ion-icon name="close-outline" class="w-6 h-6"></ion-icon>
+        </button>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-4 text-sm text-gray-600 dark:text-gray-300">
+        <p><strong>1. 資料收集：</strong></p>
+        <p>當您使用本諮詢服務時，我們將收集您所提供的個人資料，包括姓名、聯絡電話及 Email，以便與您聯繫並安排諮詢。</p>
+
+        <p><strong>2. 資料使用：</strong></p>
+        <p>您提供的資料僅供本事務所內部使用，目的為（一）回覆您的諮詢；（二）安排律師諮詢時間；（三）寄送與諮詢相關的通知。</p>
+
+        <p><strong>3. 資料保護：</strong></p>
+        <p>我們承諾保護您的個人隱私，不會將您的資料出售、交換或透露給任何第三方，除非法律要求或獲得您的明確同意。</p>
+
+        <p><strong>4. 當事人權利：</strong></p>
+        <p>您可隨時聯繫我們，要求查詢、閱覽、複製、補充、更正、停止收集、處理或利用，或刪除您的個人資料。</p>
+
+        <p><strong>5. 條款同意：</strong></p>
+        <p>當您勾選「我已閱讀並同意隱私權條款」並提交表單時，即表示您已詳閱並同意上述所有內容。</p>
+
+        <p>（...此處為範本內容，請依據實際法規填寫完整條款...）</p>
+      </div>
+      <div class="px-6 py-3 bg-gray-50 dark:bg-gray-700 border-t dark:border-gray-600 text-right">
+        <button id="modal-agree-btn" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">我已閱讀並同意</button>
+      </div>
     </div>
   </div>
-  </nav>
 
-  <!-- 2. Hero Section -->
-  <section id="home" class="py-5 text-center hero-section">
-    <div class="container">
-      <h1 class="display-25"><strong>保護您的創意資產</strong></h1>
-      <p class="lead my-4">從商標、專利到著作權，超牛逼智權律師提供全方位的法律諮詢服務，捍衛您的智慧財產權。</p>
-      <a href="#contact" class="btn btn-purple btn-lg m-2">立即免費諮詢</a>
-      <!-- <a href="#contact" class="btn btn-outline-light btn-lg m-2">與我聯繫</a> -->
-    </div>
-  </section>
-
-  <!-- 3. 關於我 -->
-  <section id="about" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5">律師資歷</h2>
-      <div class="row align-items-center">
-        <!-- 請自行完成：使用 col-md-6 建立兩欄 -->
-        <div class="col-md-6 text-center mb-4 mb-md-0">
-          <img src="photo/w1200.jfif" class="img-fluid rounded-circle shadow" alt="照片">
-        </div>
-        <div class="col-md-6 text-center mb-4 mb-md-0">
-          <!-- <p class="fs-5">我的名字叫許紘瑋 20歲。住在新北市東部一帶。我在淡江大學就讀。我不抽煙，酒僅止於淺嚐。晚上11點睡，每天要睡足8個小時。</p>
-          <p class="text-muted">睡前，我一定喝一杯溫牛奶，然後做20分鐘的柔軟操，上了床，馬上熟睡。<span class="fw-bold text-dark">一覺到天亮</span>，決不把疲勞和壓力留到第二天。</p>
-          <div class="alert alert-primary mt-5" role="4">醫生都說我很正常!</div> -->
-          <img src="photo/w1200.jfif" class="img-fluid rounded-circle shadow" alt="照片">
-        </div>
-      </div>
-      <!-- <h3 class="text-center col-md-6">你好</h3> -->
-      <div class="row align-items-center">
-        <div class="col-md-6 text-center mb-4 mb-md-0">
-          <p class="fs-5">我的名字叫許紘瑋 20歲。住在新北市東部一帶。我在淡江大學就讀。我不抽煙，酒僅止於淺嚐。晚上11點睡，每天要睡足8個小時。</p>
-          <p class="text-muted">睡前，我一定喝一杯溫牛奶，然後做20分鐘的柔軟操，上了床，馬上熟睡。<span class="fw-bold text-dark">一覺到天亮</span>，決不把疲勞和壓力留到第二天。</p>
-          <div class="alert alert-primary mt-5" role="4">醫生都說我很正常!</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. 技能展示 -->
-  <section id="skills" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-5">服務領域</h2>
-      <div class="row text-center">
-        <!-- 請自行完成：至少 3 個 col-md-4 -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title my-3">前端開發</h5>
-              <p class="card-text">擁有對HTML, CSS, JavaScript基本認知。</p>
-              <span class="badge bg-primary me-1">HTML</span>
-              <span class="badge bg-success me-1">CSS</span>
-              <span class="badge bg-dark me-1 ">JavaScript</span>
-              <div class="progress mt-3" style="height: 10px;">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 50%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title my-3">前端框架</h5>
-              <p class="card-text">會使用前端UI框架Bootstrap設計響應式網站的能力。</p>
-              <span class="badge bg-info me-1">UI框架</span>
-              <span class="badge bg-secondary me-1">RWD</span>
-              <div class="progress mt-3" style="height: 10px;">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title my-3">git指令</h5>
-              <p class="card-text">熟悉基本git指令，擁有自己的github專案。</p>
-              <span class="badge bg-dark me-1">git clone</span>
-              <span class="badge bg-primary me-1">git push</span>
-              <span class="badge bg-info">git pull</span>
-              <div class="progress mt-3" style="height: 10px;">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 50%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. 作品集 -->
-  <section id="portfolio" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5">作品集</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img src="hqdefault.jpg" class="card-img-top" alt="作品1">
-            <div class="card-body">
-              <h5 class="card-title">firsthtml</h5>
-              <p class="card-text">第一個html</p>
-              <a href="https://github.com/412631144/114_tkuim_web/blob/main/myfirsthtml.html" class="btn btn-primary"><i class="bi bi-link"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img src="0130233752.jpg" class="card-img-top" alt="作品2">
-            <div class="card-body">
-              <h5 class="card-title">aboutme</h5>
-              <p class="card-text">自我介紹</p>
-              <a href="https://github.com/412631144/114_tkuim_web/blob/main/aboutme.html" class="btn btn-primary"><i class="bi bi-link"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img src="post-image-384615474141.jpg" class="card-img-top" alt="作品3">
-            <div class="card-body">
-              <h5 class="card-title">我的網站</h5>
-              <p class="card-text">我的個人介紹，技能，作品及以及聯絡資訊</p>
-              <a href="https://github.com/412631144/114_tkuim_web/blob/main/1013/portfolio.html" class="btn btn-primary"><i class="bi bi-link"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. 聯絡表單 -->
-  <section id="contact" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-5">聯絡我</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-          <form>
-            <div class="mb-3 row">
-              <div class="col-md-6">
-                <label for="name" class="form-label">姓名</label>
-                <input type="text" class="form-control" id="name" required>
-              </div>
-              <div class="col-md-6">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" required>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="subject" class="form-label">主旨</label>
-              <input type="text" class="form-control" id="subject" required>
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">訊息</label>
-              <textarea id="message" class="form-control" rows="5" required></textarea>
-            </div>
-            <button class="btn btn-primary">送出</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. Footer -->
-  <footer class="bg-dark text-white text-center py-4">
-    <!-- 請自行完成 -->
-     <div class="container">
-      <div class="mb-3">
-        <a href="https://github.com/412631144/114_tkuim_web" class="text-white mx-2 fs-4"><i class="bi bi-github"></i></a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D" class="text-white mx-2 fs-4"><i class="bi bi-youtube"></i></a>
-        <a href="https://www.instagram.com/weimeng_music/" class="text-white mx-2 fs-4"><i class="bi bi-instagram"></i></a>
-      </div>
-      <p class="mb-0">&copy; 2025 許紘瑋. All Rights Reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Bootstrap JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 抽出的主程式 -->
+  <script src="test.js"></script>
 </body>
-</html>
+</html> 
