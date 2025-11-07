@@ -1,15 +1,4 @@
 
-
-.navbar-dark .navbar-nav .nav-link:not(.btn) {
-    color: #ffffff;
-}
-
-.navbar-dark .navbar-nav .nav-link:not(.btn):hover {
-  color: #b68eff;
-}
-
-
-
 /* 隱藏的步驟 */
 .form-step {
   display: none;
