@@ -9,28 +9,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   
-  <!-- 自訂 CSS（選用） -->
-  <style>
-    /* 你可以在這裡加入自訂樣式 */
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    
-
-    .hero-section .display-4 {
-        font-weight: 700;
-    }
-
-    body {
-    font-family: '微軟正黑體', sans-serif;
-    }
-
-  </style>
+  
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
@@ -40,9 +22,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#about">關於我們</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">團隊介紹</a></li>
         <li class="nav-item"><a class="nav-link" href="#skills">服務項目</a></li>
-        <li class="nav-item"><a class="nav-link" href="#portfolio">成功案例</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">成功案例</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contactus">聯絡我們</a></li>
         <li class="nav-item"><a class="nav-link btn btn-purple mx-2" href="#contact">立即諮詢</a></li>
       </ul>
     </div>
@@ -52,39 +35,55 @@
   <!-- 2. Hero Section -->
   <section id="home" class="py-5 text-center hero-section">
     <div class="container">
-      <h1 class="display-25"><strong>保護您的創意資產</strong></h1>
+      <h1 class="display-4"><strong>保護您的創意資產</strong></h1>
       <p class="lead my-4">從商標、專利到著作權，超牛逼智權律師提供全方位的法律諮詢服務，捍衛您的智慧財產權。</p>
       <a href="#contact" class="btn btn-purple btn-lg m-2"><strong>立即免費諮詢</strong></a>
       <!-- <a href="#contact" class="btn btn-outline-light btn-lg m-2">與我聯繫</a> -->
     </div>
   </section>
 
-  <!-- 3. 關於我 -->
-  <section id="about" class="py-5 bg-light">
+  <!-- 5. 作品集 -->
+  <section id="portfolio" class="py-5 bg-light">
     <div class="container">
-      <h2 class="text-center mb-5"><strong>律師資歷</strong></h2>
-      <div class="row align-items-center">
-        <!-- 請自行完成：使用 col-md-6 建立兩欄 -->
-        <div class="col-md-6 text-center mb-4 mb-md-0">
-          <img src="#" class="img-fluid rounded-circle shadow" alt="照片">
+      <h2 class="text-center mb-5"><strong>專業團隊</strong></h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100 card-clickable"
+               data-bs-toggle="modal" 
+               data-bs-target="#infoModal"
+               data-lawyer-name="地缺律師"
+               data-lawyer-link="#"
+               data-lawyer-desc="地缺律師是本所的創始合夥人之一，專精於跨國專利訴訟與談判。擁有超過 20 年的執業經驗，成功協助多家上市櫃公司佈局全球智財策略。"
+          >
+            <img src="photo/left.jpeg" class="card-img-top" alt="律師1">
+            <div class="card-body">
+              <h5 class="card-title"><strong>地缺律師</strong></h5>
+              <!-- <p class="card-text">個人網頁:<a href="#" class="mx-4 btn btn-purple"><i class="bi bi-link"></i></a></p> -->
+              
+            </div>
+          </div>
         </div>
-        <div class="col-md-6 text-center mb-4 mb-md-0">
-          <!-- <p class="fs-5">我的名字叫許紘瑋 20歲。住在新北市東部一帶。我在淡江大學就讀。我不抽煙，酒僅止於淺嚐。晚上11點睡，每天要睡足8個小時。</p>
-          <p class="text-muted">睡前，我一定喝一杯溫牛奶，然後做20分鐘的柔軟操，上了床，馬上熟睡。<span class="fw-bold text-dark">一覺到天亮</span>，決不把疲勞和壓力留到第二天。</p>
-          <div class="alert alert-primary mt-5" role="4">醫生都說我很正常!</div> -->
-          <img src="#" class="img-fluid rounded-circle shadow" alt="照片">
-        </div>
-      </div>
-      <!-- <h3 class="text-center col-md-6">你好</h3> -->
-      <div class="row align-items-center">
-        <div class="col-md-6 text-center mb-4 mb-md-0">
-          <p class="fs-5">我的名字叫許紘瑋 20歲。住在新北市東部一帶。我在淡江大學就讀。我不抽煙，酒僅止於淺嚐。晚上11點睡，每天要睡足8個小時。</p>
-          <p class="text-muted">睡前，我一定喝一杯溫牛奶，然後做20分鐘的柔軟操，上了床，馬上熟睡。<span class="fw-bold text-dark">一覺到天亮</span>，決不把疲勞和壓力留到第二天。</p>
-          <div class="alert alert-primary mt-5" role="4">醫生都說我很正常!</div>
+        <div class="col-md-6 mb-4 ">
+          <div class="card h-100 card-clickable"
+               data-bs-toggle="modal" 
+               data-bs-target="#infoModal"
+               data-lawyer-name="天殘律師"
+               data-lawyer-link="https://412631144.github.io/my-portfolio/"
+               data-lawyer-desc="天殘律師專精於商標法及著作權法，尤其擅長處理新興的數位內容與網路侵權案件。他致力於為文創產業的客戶提供最前沿的法律保護。"
+          >
+            <img src="photo/right.jpeg" class="card-img-top" alt="律師2">
+            <div class="card-body">
+              <h5 class="card-title"><strong>天殘律師</strong></h5>
+              <!-- <p class="card-text">個人網頁:<a href="#" class="mx-4 btn btn-purple"><i class="bi bi-link"></i></a></p> -->
+              
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  
 
   <!-- 4. 技能展示 -->
   <section id="skills" class="py-5">
@@ -92,44 +91,81 @@
       <h2 class="text-center mb-5"><strong>服務領域</strong></h2>
       <div class="row text-center">
         <!-- 請自行完成：至少 3 個 col-md-4 -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 shadow-sm bg-light card-clickable"
+               data-bs-toggle="modal" 
+               data-bs-target="#downloadModal"
+               data-file-path="assets/專利法.pdf"
+               data-file-name="專利法.pdf"
+          >
             <div class="card-body">
-              <h5 class="card-title my-3">專利申請與佈局</h5>
-              <p class="card-text">提供國內外專利檢索、申請、答辯及策略分析，保護您的創新發明。</p>
-              <span class="badge bg-primary me-1">專利檢索</span>
+              <i class="bi bi-shield-check fs-1 text-purple"></i>
+              <h5 class="card-title my-3"><strong>專利權</strong></h5>
+              <p class="card-text">發明、新型、設計專利申請，專利地圖分析、舉發，以及專利侵權民事訴訟</p>
+              <!-- <span class="badge bg-primary me-1">專利檢索</span>
               <span class="badge bg-success me-1">發明專利</span>
               <span class="badge bg-dark me-1 ">P C T 申請</span>
               <div class="progress mt-3" style="height: 10px;">
                 <div class="progress-bar bg-primary" role="progressbar" style="width: 50%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 shadow-sm bg-light card-clickable"
+               data-bs-toggle="modal" 
+               data-bs-target="#downloadModal"
+               data-file-path="assets/商標法.pdf"
+               data-file-name="商標法.pdf"
+          >
             <div class="card-body">
-              <h5 class="card-title my-3">前端框架</h5>
-              <p class="card-text">會使用前端UI框架Bootstrap設計響應式網站的能力。</p>
-              <span class="badge bg-info me-1">品牌策略</span>
+              <i class="bi bi-tag-fill fs-1 text-purple"></i>
+              <h5 class="card-title my-3"><strong>商標權</strong></h5>
+              <p class="card-text">包含商標檢索、申請註冊、異議、評定、廢止，以及商標侵權訴訟</p>
+              <!-- <span class="badge bg-info me-1">品牌策略</span>
               <span class="badge bg-secondary me-1">商標註冊</span>
               <div class="progress mt-3" style="height: 10px;">
                 <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 shadow-sm bg-light card-clickable"
+               data-bs-toggle="modal" 
+               data-bs-target="#downloadModal"
+               data-file-path="assets/著作權法.pdf"
+               data-file-name="著作權法規.pdf"
+          >
             <div class="card-body">
-              <h5 class="card-title my-3">git指令</h5>
-              <p class="card-text">熟悉基本git指令，擁有自己的github專案。</p>
-              <span class="badge bg-dark me-1">git clone</span>
+              <i class="bi bi-lightbulb-fill fs-1 text-purple"></i>
+              <h5 class="card-title my-3"><strong>著作權</strong></h5>
+              <p class="card-text">包含商標檢索、申請註冊、異議、評定、廢止，以及商標侵權訴訟</p>
+              <!-- <span class="badge bg-dark me-1">git clone</span>
               <span class="badge bg-primary me-1">git push</span>
               <span class="badge bg-info">git pull</span>
               <div class="progress mt-3" style="height: 10px;">
                 <div class="progress-bar bg-primary" role="progressbar" style="width: 50%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 shadow-sm bg-light card-clickable"
+               data-bs-toggle="modal" 
+               data-bs-target="#downloadModal"
+               data-file-path="assets/營業秘密法.pdf"
+               data-file-name="營業秘密法規.pdf"
+          >
+            <div class="card-body">
+              <i class="bi bi-lock-fill fs-1 text-purple"></i>
+              <h5 class="card-title my-3"><strong>營業秘密法</strong></h5>
+              <p class="card-text">營業秘密識別、保密機制建構、員工合約設計、洩密風險控管、法律責任追訴</p>
+              <!-- <span class="badge bg-info me-1">品牌策略</span>
+              <span class="badge bg-secondary me-1">商標註冊</span>
+              <div class="progress mt-3" style="height: 10px;">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -137,91 +173,246 @@
     </div>
   </section>
 
-  <!-- 5. 作品集 -->
-  <section id="portfolio" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5">作品集</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img src="hqdefault.jpg" class="card-img-top" alt="作品1">
-            <div class="card-body">
-              <h5 class="card-title">firsthtml</h5>
-              <p class="card-text">第一個html</p>
-              <a href="https://github.com/412631144/114_tkuim_web/blob/main/myfirsthtml.html" class="btn btn-primary"><i class="bi bi-link"></i></a>
+  <!-- 3. FAQ (已轉換為 Bootstrap Accordion) -->
+    <section id="faq" class="py-5 bg-body-tertiary">
+      <div class="container px-4 col-md-10 col-lg-8 mx-auto">
+        <h3 class="h2 fw-bold text-center mb-5">常見問答 (FAQ)</h3>
+        <div class="accordion shadow-sm rounded" id="faqAccordion">
+          <!-- FAQ 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Q: 我需要花多少錢申請商標？
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-body-secondary">
+                A: 申請商標的費用包含政府規費和事務所服務費。規費會依據您申請的類別多寡而定。服務費則視案件複雜度而定。建議您點選「立即諮詢」並提供初步資料，我們將為您提供免費的初步報價。
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img src="0130233752.jpg" class="card-img-top" alt="作品2">
-            <div class="card-body">
-              <h5 class="card-title">aboutme</h5>
-              <p class="card-text">自我介紹</p>
-              <a href="https://github.com/412631144/114_tkuim_web/blob/main/aboutme.html" class="btn btn-primary"><i class="bi bi-link"></i></a>
+          <!-- FAQ 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Q: 我的點子（Idea）可以申請專利嗎？
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-body-secondary">
+                A: 純粹的「點子」或「概念」通常無法直接申請專利。專利法要求保護的是具體的「技術實施方案」。您需要將點子具體化為可行的技術、方法或產品結構，才能進行專利申請。
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img src="post-image-384615474141.jpg" class="card-img-top" alt="作品3">
-            <div class="card-body">
-              <h5 class="card-title">我的網站</h5>
-              <p class="card-text">我的個人介紹，技能，作品及以及聯絡資訊</p>
-              <a href="https://github.com/412631144/114_tkuim_web/blob/main/1013/portfolio.html" class="btn btn-primary"><i class="bi bi-link"></i></a>
+          <!-- FAQ 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Q: 我在網路上轉貼文章，有註明出處，這樣算侵權嗎？
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-body-secondary">
+                A: 仍然有很高的侵權風險。註明出處僅是符合「著作人格權」中的姓名表示權，但您仍未取得「著作財產權」中的「公開傳輸權」授權。除非您的使用符合「合理使用」的範圍（例如：個人非營利使用、少量引用等），否則仍需取得原作者同意。
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
   <!-- 6. 聯絡表單 -->
   <section id="contact" class="py-5">
     <div class="container">
-      <h2 class="text-center mb-5">聯絡我</h2>
+      <h2 class="text-center mb-3"><strong>立即諮詢</strong></h2>
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-          <form>
+          <form class="needs-validation" novalidate>
             <div class="mb-3 row">
               <div class="col-md-6">
                 <label for="name" class="form-label">姓名</label>
                 <input type="text" class="form-control" id="name" required>
+                <div class="invalid-feedback">請輸入您的姓名。</div>
               </div>
               <div class="col-md-6">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback">請輸入有效的email。</div>
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <div class="col-md-6">
+                <label for="law" class="form-label">法律類別</label>
+                <select class="form-select" id="law" required>
+                  <option value="" selected disabled>請選擇法律</option>
+                  <option value="a">專利權</option>
+                  <option value="b">商標權</option>
+                  <option value="c">著作權</option>
+                  <option value="d">營業秘密法</option>
+                  <option value="other">其他</option>
+                </select>
+                <div class="invalid-feedback">請選擇一個項目</div>
+              </div>
+              <div class="col-md-6">
+                <label for="lawyer" class="form-label">預約律師</label>
+                <select class="form-select" id="lawyer" required>
+                  <option value="" selected disabled>請選擇律師</option>
+                  <option value="a">地缺律師</option>
+                  <option value="b">天殘律師</option>
+                </select>
+                <div class="invalid-feedback">請選擇一位律師</div>
               </div>
             </div>
             <div class="mb-3">
-              <label for="subject" class="form-label">主旨</label>
-              <input type="text" class="form-control" id="subject" required>
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">訊息</label>
+              <label for="message" class="form-label">諮詢內容</label>
               <textarea id="message" class="form-control" rows="5" required></textarea>
+              <div class="invalid-feedback">請填寫內容</div>
             </div>
-            <button class="btn btn-primary">送出</button>
+            <div class="mt-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="privacy" required>
+                <label class="form-check-label text-secondary" for="privacy">
+                  我已閱讀並同意 <a href="#" class="text-purple text-decoration-underline" data-bs-toggle="modal" data-bs-target="#privacyModal">隱私權條款</a>
+                  </label>
+                  <div class="invalid-feedback">您必須同意隱私權條款才能提交。</div>
+              </div>
+            </div>
+            <button class="btn btn-purple">送出</button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- 聯絡我們區塊 -->
+    <section id="contactus" class="py-5 bg-darkblue">
+      <div class="container px-4">
+        <div class="row g-5 align-items-center">
+          <div class="col-md-6">
+            <h3 class="display-4 mb-4"><strong>聯絡我們</strong></h3>
+            <p class="mb-4">歡迎親臨本事務所，或透過電話、Email 與我們聯繫。我們期待為您服務。</p>
+            <ul class="list-unstyled d-flex flex-column gap-3">
+              <li class="d-flex">
+                <i class="bi bi-geo-alt-fill text-purple me-3 fs-5"></i>
+                <div>
+                  <h5 class="mb-1"><strong>事務所地址</strong></h5>
+                  <p class="mb-0">251 新北市淡水區英專路151號</p>
+                </div>
+              </li>
+              <li class="d-flex">
+                <i class="bi bi-telephone-fill text-purple me-3 fs-5"></i>
+                <div>
+                  <h5 class="mb-1"><strong>聯絡電話</strong></h5>
+                  <p class="mb-0">0800-061-000</p>
+                </div>
+              </li>
+              <li class="d-flex">
+                <i class="bi bi-clock-fill text-purple me-3 fs-5"></i>
+                <div>
+                  <h5 class="mb-1"><strong>服務時間</strong></h5>
+                  <p class="mb-0">全年 23:59 - 24:00</p>
+                </div>
+              </li>
+              <li class="d-flex">
+                <i class="bi bi-envelope-fill text-purple me-3 fs-5"></i>
+                <div>
+                  <h5 class="mb-1"><strong>Email</strong></h5>
+                  <p class="mb-0">412631144@o365.tku.edu.tw</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <!-- 嵌入 Google Maps -->
+            <div class="ratio ratio-4x3 ms-5">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2147.0354849829355!2d121.4459812065236!3d25.17390467082705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aff8c1544bdb%3A0x1dcf4f494b3362b!2z5reh5rGf5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1762603798200!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   <!-- 7. Footer -->
   <footer class="bg-dark text-white text-center py-4">
     <!-- 請自行完成 -->
      <div class="container">
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <a href="https://github.com/412631144/114_tkuim_web" class="text-white mx-2 fs-4"><i class="bi bi-github"></i></a>
         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D" class="text-white mx-2 fs-4"><i class="bi bi-youtube"></i></a>
         <a href="https://www.instagram.com/weimeng_music/" class="text-white mx-2 fs-4"><i class="bi bi-instagram"></i></a>
-      </div>
-      <p class="mb-0">&copy; 2025 許紘瑋. All Rights Reserved.</p>
+      </div> -->
+      <p class="mb-0">&copy; 2025 許高智權律師事務所. All Rights Reserved.</p>
     </div>
   </footer>
 
+<!-- 彈跳視窗(下載) -->
+<div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="downloadModalLabel"><strong>確認下載</strong></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>您是否確定要下法規： <br><strong><span id="modalFileName">檔案名稱會顯示在這裡</span></strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+        <a id="modalDownloadButton" href="#" download class="btn btn-purple">立即下載</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 彈跳視窗(介紹) -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalLabel">律師姓名</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-8">
+            <p id="modalLawyerDesc">律師的詳細介紹會顯示在這裡...</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">關閉</button>
+        <a id="modalLawyerLink" href="#" class="btn btn-purple " target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-link"></i> 個人網頁
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 彈跳視窗(隱私權) -->
+<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="privacyModalLabel">隱私權條款</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>感謝您使用「超牛逼律師事務所」的線上諮詢服務。為了保護您的權益，請詳細閱讀本條款。</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-purple" data-bs-dismiss="modal" id="agree">我同意</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 回到頂端 -->
+<a href="#" id="btnBackToTop" class="btn btn-purple rounded-circle shadow-lg">
+  <i class="bi bi-arrow-up"></i>
+</a>
+
+
+</body>
   <!-- Bootstrap JavaScript -->
+   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
