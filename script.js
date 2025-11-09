@@ -167,4 +167,53 @@ const privacyCheckbox = document.getElementById('privacy');
     privacyCheckbox.checked = true;
     privacyCheckbox.dispatchEvent(new Event('change'));
   });
+
+
+//深色模式
+// --- 這是「深色模式切換按鈕」用的 JS ---
+(function() {
+    // 1. 取得需要的元素
+    const htmlEl = document.documentElement;
+    const themeToggler = document.getElementById('theme-toggler');
+    const themeIcon = document.getElementById('theme-icon');
+
+    if (!themeToggler || !themeIcon) {
+        return; // 如果找不到按鈕，就停止
+    }
+
+    // 2. 輔助函式：更新圖示
+    const updateIcon = (theme) => {
+        if (theme === 'dark') {
+            themeIcon.classList.remove('bi-moon-fill');
+            themeIcon.classList.add('bi-sun-fill');
+        } else {
+            themeIcon.classList.remove('bi-sun-fill');
+            themeIcon.classList.add('bi-moon-fill');
+        }
+    };
+
+    // 3. 【重要】頁面載入時，設定「目前」的圖示
+    //    (讀取 <head> 腳本已設定好的 'data-bs-theme')
+    const currentTheme = htmlEl.getAttribute('data-bs-theme');
+    updateIcon(currentTheme);
+
+    // 4. 監聽「點擊」事件
+    themeToggler.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止 <a> 連結跳轉
+        
+        // 取得目前的主題，並決定新主題
+        const currentTheme = htmlEl.getAttribute('data-bs-theme');
+        const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+        
+        // 1. 更新 <html> 屬性
+        htmlEl.setAttribute('data-bs-theme', newTheme);
+        
+        // 2. 儲存到 localStorage
+        localStorage.setItem('theme', newTheme);
+        
+        // 3. 更新按鈕圖示
+        updateIcon(newTheme);
+    });
+
+})();  
   

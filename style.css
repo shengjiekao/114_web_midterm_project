@@ -105,3 +105,77 @@ html {
     box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.25);
     border-color: #8a6bc9; 
 }
+
+
+/*
+ * ========================================
+ * 您的「自訂深色模式」覆蓋樣式
+ * ========================================
+*/
+
+/* * 當 <html> 標籤有 [data-bs-theme="dark"] 屬性時，
+ * 啟用以下所有樣式
+*/
+[data-bs-theme="dark"] {
+    
+    /* * 1. 您的紫色按鈕 (.btn-purple)
+     * (在深色模式下，我們讓它保持原樣，
+     * 但 "hover" 時要「變亮」而不是「變暗」)
+    */
+    .btn-purple:hover {
+        background-color: #8a6bc9; /* 變亮的紫色 */
+        border-color: #8a6bc9;
+    }
+
+    /* * 2. 您的紫色文字 (.text-purple)
+     * (用於圖示和連結，原始紫色 #6f42c1 在黑底上太暗)
+     * 我們把它換成一個更亮的紫色
+    */
+    .text-purple {
+        color: #a488d6 !important; /* 更亮的紫色 */
+    }
+
+    /* * 3. 您的導覽列 Logo/品牌名稱
+     * (同上，換成亮紫色)
+    */
+    .navbar-dark .navbar-brand {
+        color: #a488d6;
+    }
+    .navbar-dark .navbar-brand:hover {
+        color: #c0b0df;
+    }
+
+    /* * 4. 導覽列連結的「紫色光暈」
+     * (原本的光暈是暗紫色，會看不見)
+    */
+    .navbar-dark .navbar-nav .nav-link:not(.btn):hover {
+        color: #a488d6;
+        /* * 使用亮紫色的光暈
+         * rgba(164, 136, 214, 0.7)
+        */
+        text-shadow: 0 0 10px rgba(164, 136, 214, 0.7);
+    }
+    
+    /* * 5. 表單的「紫色光暈」 (Focus)
+     * (必須覆蓋掉 .was-validated 的樣式)
+    */
+    .form-control:focus,
+    .form-select:focus,
+    .form-check-input:focus,
+    .was-validated .form-control:valid:focus,
+    .was-validated .form-select:valid:focus,
+    .was-validated .form-check-input:valid:focus {
+        /* * 使用亮紫色的光暈
+         * rgba(164, 136, 214, 0.35)
+        */
+        border-color: #a488d6;
+        box-shadow: 0 0 0 0.25rem rgba(164, 136, 214, 0.35);
+    }
+
+    /* * 6. 表單「選中後」的紫色文字
+    */
+    .form-select:valid {
+        color: #a488d6;
+    }
+    
+} /* [data-bs-theme="dark"] 結束 */

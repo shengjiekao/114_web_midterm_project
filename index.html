@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>許高智權律師事務所</title>
+
+  <!-- 深色模式 -->
+  <!-- <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script>
+    (function() {
+      const getPreferredTheme = () => {
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+          return storedTheme;
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+      document.documentElement.setAttribute('data-bs-theme', getPreferredTheme());
+    })();
+  </script> -->
   
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,9 +41,10 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#portfolio">團隊介紹</a></li>
         <li class="nav-item"><a class="nav-link" href="#skills">服務項目</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">成功案例</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">常見問題</a></li>
         <li class="nav-item"><a class="nav-link" href="#contactus">聯絡我們</a></li>
         <li class="nav-item"><a class="nav-link btn btn-purple mx-2" href="#contact">立即諮詢</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" id="theme-toggler" href="#" title="切換深色/淺色模式"><i class="bi" id="theme-icon"></i></a></li> -->
       </ul>
     </div>
   </div>
@@ -173,8 +191,8 @@
     </div>
   </section>
 
-  <!-- 3. FAQ (已轉換為 Bootstrap Accordion) -->
-    <section id="faq" class="py-5 bg-body-tertiary">
+  <!-- FAQ -->
+    <section id="faq" class="py-5 bg-light">
       <div class="container px-4 col-md-10 col-lg-8 mx-auto">
         <h3 class="h2 fw-bold text-center mb-5">常見問答 (FAQ)</h3>
         <div class="accordion shadow-sm rounded" id="faqAccordion">
@@ -318,6 +336,7 @@
                 <div>
                   <h5 class="mb-1"><strong>Email</strong></h5>
                   <p class="mb-0">412631144@o365.tku.edu.tw</p>
+                  <p class="mb-0">412631110@o365.tku.edu.tw</p>
                 </div>
               </li>
             </ul>
