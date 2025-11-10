@@ -56,8 +56,7 @@ function scrollFunction() {
 
 
 
-// --- 這是「localStorage 自動儲存/載入」用的 JS ---
-// (使用 IIFE 立即執行函式，避免污染全域變數)
+// localStorage
 (function() {
 
     // 1. 定義 localStorage 的 Key 和所有表單欄位的 ID
