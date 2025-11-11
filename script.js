@@ -57,77 +57,36 @@ function scrollFunction() {
 
 
 // localStorage
-(function() {
 
-    // 1. 定義 localStorage 的 Key 和所有表單欄位的 ID
-    const storageKey = 'contactFormData';
-    const fields = {
-        name: document.getElementById('name'),
-        email: document.getElementById('email'),
-        law: document.getElementById('law'),
-        lawyer: document.getElementById('lawyer'),
-        message: document.getElementById('message'),
-        privacy: document.getElementById('privacy')
-    };
+(function () {
+  const key = 'formData';
 
-    // --- 功能 1: 網頁載入時，讀取舊資料 ---
-    function loadFormData() {
-        const savedData = localStorage.getItem(storageKey);
-        
-        if (savedData) {
-            try {
-                const data = JSON.parse(savedData);
-                
-                // 將儲存的資料填回對應的欄位
-                fields.name.value = data.name || '';
-                fields.email.value = data.email || '';
-                fields.law.value = data.law || '';
-                fields.lawyer.value = data.lawyer || '';
-                fields.message.value = data.message || '';
-                fields.privacy.checked = data.privacy || false;
-                
+  // 所有欄位 ID
+  const ids = ['name', 'email', 'law', 'lawyer', 'message', 'privacy'];
 
-            } catch (e) {
-                console.error('解析 localStorage 資料失敗:', e);
-                localStorage.removeItem(storageKey); // 如果資料格式錯誤，就清除它
-            }
-        }
-    }
-
-    
-    // --- 功能 2: 使用者輸入時，儲存新資料 ---
-    function saveFormData() {
-        // 1. 建立一個物件來儲存所有欄位的值
-        const data = {
-            name: fields.name.value,
-            email: fields.email.value,
-            law: fields.law.value,
-            lawyer: fields.lawyer.value,
-            message: fields.message.value,
-            privacy: fields.privacy.checked // checkbox 是用 .checked
-        };
-        
-        // 2. 把這個物件轉成 JSON 字串，存到 localStorage
-        localStorage.setItem(storageKey, JSON.stringify(data));
-    }
-
-    // --- 綁定事件 ---
-    
-    // 1. 綁定「網頁載入完成」事件
-    //    (DOMContentLoaded 比 window.onload 更快)
-    document.addEventListener('DOMContentLoaded', loadFormData);
-
-    // 2. 綁定「輸入」事件到所有欄位
-    //    (Object.values 會取得 fields 物件中所有的元素)
-    Object.values(fields).forEach(field => {
-        // 根據欄位類型，綁定不同事件
-        if (field.type === 'checkbox') {
-            field.addEventListener('change', saveFormData); // 勾選框用 'change'
-        } else {
-            field.addEventListener('input', saveFormData);  // 文字/下拉選單用 'input'
-        }
+  // 讀取資料
+  document.addEventListener('DOMContentLoaded', () => {
+    const data = JSON.parse(localStorage.getItem(key) || '{}');
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el[el.type === 'checkbox' ? 'checked' : 'value'] = data[id] || '';
+      }
     });
+  });
 
+  // 儲存資料
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      const eventType = el.type === 'checkbox' ? 'change' : 'input';
+      el.addEventListener(eventType, () => {
+        const data = JSON.parse(localStorage.getItem(key) || '{}');
+        data[id] = el.type === 'checkbox' ? el.checked : el.value;
+        localStorage.setItem(key, JSON.stringify(data));
+      });
+    }
+  });
 })();
 
 // Bootstrap 5 表單驗證用
