@@ -40,16 +40,15 @@ const infoModal = document.getElementById('infoModal');
 
 let topButton = document.getElementById("btnBackToTop");
 window.onscroll = function() {
-    scrollFunction();
+  scrollFunction();
 };
 
 function scrollFunction() {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        topButton.style.display = "flex";
-        
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    topButton.style.display = "flex";
     } else {
-        topButton.style.display = "none";
-    }
+    topButton.style.display = "none";
+  }
 }
 
 
@@ -60,11 +59,7 @@ function scrollFunction() {
 
 (function () {
   const key = 'formData';
-
-  // 所有欄位 ID
   const ids = ['name', 'email', 'law', 'lawyer', 'message', 'privacy'];
-
-  // 讀取資料
   document.addEventListener('DOMContentLoaded', () => {
     const data = JSON.parse(localStorage.getItem(key) || '{}');
     ids.forEach(id => {
@@ -75,7 +70,6 @@ function scrollFunction() {
     });
   });
 
-  // 儲存資料
   ids.forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -90,30 +84,21 @@ function scrollFunction() {
 })();
 
 // Bootstrap 5 表單驗證用
-
-const form = document.querySelectorAll('.needs-validation');
-
-Array.from(form).forEach(form => {
+document.querySelectorAll('.needs-validation').forEach(form => {
   form.addEventListener('submit', event => {
-    
-    if (!form.checkValidity()) {
-      event.preventDefault();
-      event.stopPropagation();
-      
-    } else {
-      event.preventDefault(); 
-      
+    event.preventDefault();
+    const isValid = form.checkValidity();
+
+    if (isValid) {
       alert('我們將在300到500個工作天後與您聯繫！');
       localStorage.removeItem('contactFormData');
       form.reset();
       form.classList.remove('was-validated');
-    }
-
-    if (!form.checkValidity()) {
+    } else {
+      event.stopPropagation();
       form.classList.add('was-validated');
     }
-    
-  }, false); 
+  });
 });
 
 
@@ -126,52 +111,54 @@ const privacyCheckbox = document.getElementById('privacy');
     privacyCheckbox.dispatchEvent(new Event('change'));
   });
 
+// --- 這是「服務流程 (Stepper)」用的 JS ---
 
-//深色模式
-// --- 這是「深色模式切換按鈕」用的 JS ---
-(function() {
-    // 1. 取得需要的元素
-    const htmlEl = document.documentElement;
-    const themeToggler = document.getElementById('theme-toggler');
-    const themeIcon = document.getElementById('theme-icon');
+// 1. 取得所有「步驟」的卡片
+const processSteps = [
+  document.getElementById('step-1'),
+  document.getElementById('step-2'),
+  document.getElementById('step-3')
+];
 
-    if (!themeToggler || !themeIcon) {
-        return; // 如果找不到按鈕，就停止
+// 2. 取得「進度條」的元素
+const progressBar = document.getElementById('processProgressBar');
+
+// 3. 建立一個「資料庫」，儲存每個步驟對應的進度
+//    (您可以自訂文字和寬度)
+const stepData = {
+  1: { width: '33.3%', text: '步驟 1: 初步諮詢' },
+  2: { width: '66.6%', text: '步驟 2: E案件評估' },
+  3: { width: '100%',  text: '步驟 3: 案件執行' }
+};
+
+// 4. 建立「切換步驟」的函式
+//    (這就是 HTML 裡的 onclick="goToProcessStep(...)" 會呼叫的函式)
+function goToProcessStep(stepNumber) {
+  
+  // 5. 【隱藏所有卡片】
+  processSteps.forEach(step => {
+    if (step) { // 檢查元素是否存在
+      step.style.display = 'none';
     }
+  });
+  
+  // 6. 【只顯示目標卡片】
+  //    (JS 陣列是 0-based, 步驟是 1-based, 所以要 -1)
+  const targetStep = document.getElementById('step-' + stepNumber);
+  if (targetStep) {
+    targetStep.style.display = 'block';
+  }
+  
+  // 7. 【更新進度條】
+  const data = stepData[stepNumber];
+  if (progressBar && data) {
+    // 改變寬度
+    progressBar.style.width = data.width;
+    // 改變無障礙屬性 (給螢幕閱讀器)
+    progressBar.setAttribute('aria-valuenow', data.width.replace('%', ''));
+    // 改變顯示的文字
+    progressBar.textContent = data.text;
+  }
+}
 
-    // 2. 輔助函式：更新圖示
-    const updateIcon = (theme) => {
-        if (theme === 'dark') {
-            themeIcon.classList.remove('bi-moon-fill');
-            themeIcon.classList.add('bi-sun-fill');
-        } else {
-            themeIcon.classList.remove('bi-sun-fill');
-            themeIcon.classList.add('bi-moon-fill');
-        }
-    };
-
-    // 3. 【重要】頁面載入時，設定「目前」的圖示
-    //    (讀取 <head> 腳本已設定好的 'data-bs-theme')
-    const currentTheme = htmlEl.getAttribute('data-bs-theme');
-    updateIcon(currentTheme);
-
-    // 4. 監聽「點擊」事件
-    themeToggler.addEventListener('click', (e) => {
-        e.preventDefault(); // 阻止 <a> 連結跳轉
-        
-        // 取得目前的主題，並決定新主題
-        const currentTheme = htmlEl.getAttribute('data-bs-theme');
-        const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
-        
-        // 1. 更新 <html> 屬性
-        htmlEl.setAttribute('data-bs-theme', newTheme);
-        
-        // 2. 儲存到 localStorage
-        localStorage.setItem('theme', newTheme);
-        
-        // 3. 更新按鈕圖示
-        updateIcon(newTheme);
-    });
-
-})();  
   

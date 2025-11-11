@@ -16,7 +16,7 @@ body {
 
 
 html {
-    scroll-padding-top: 107.59px; 
+    scroll-padding-top: 60px; 
 }
 
 .navbar-dark .navbar-brand {
@@ -46,6 +46,14 @@ html {
   color: white;
 }
 
+.bg-purple{
+  background-color: #6f42c1;
+  color: white;
+}
+
+#processProgressBar {
+    background-color: #6f42c1; 
+}
 
 
 .navbar-dark .navbar-nav .nav-link:not(.btn) {
