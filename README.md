@@ -1,6 +1,6 @@
 
 # 專案名稱
--  許高智權律師事務所｜智慧財產權資訊與線上諮詢平台
+- 智慧財產權資訊與線上諮詢平台
 
 ### 組員
 - 許紘瑋
@@ -18,39 +18,31 @@
 6. 回到頂端按鈕
 
 ### 使用技術
-- HTML — 網頁結構設計
-- CSS — 客製化樣式（按鈕、表單）
-- Bootstrap — 排版、RWD 與元件整合
-- JavaScript — 所有互動功能（模態框、流程切換、儲存表單、回頂端）
-- Constraint Validation API — 表單驗證與錯誤提示
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
+- Constraint Validation API
+- localstorage
 
 ### 功能特色
-  1. 律師介紹彈跳視窗（模態視窗）
-        使用者點擊律師卡片後，會顯示律師簡介與個人網站連結。
-        內容從卡片 data-* 屬性動態帶入。
+  1. 彈跳視窗
+        使用者點擊卡片後，會顯示相關的資訊。
 
   2. 法規下載模態視窗
-        每個服務領域卡片都綁定對應的 PDF 法規檔案，點擊後會彈出確認下載視窗。
+        每個服務領域卡片都綁定對應的 PDF 法規檔案。
 
-  3. 線上諮詢表單（含驗證）
+  3. 線上諮詢表單
         使用 Bootstrap 驗證與 Constraint Validation API
         自動記錄每個欄位輸入狀態（localStorage）
-        點選「我同意」會自動勾選隱私權條款
-        所有欄位必填才能送出
 
-  4. 服務流程分步切換（進度條動態更新）
-        採三步驟切換：
-            初步諮詢
-            案件評估
-            案件執行
-        按鈕可前後切換 Flow，並同步修改 ProgressBar。
+  4. 服務流程分步切換
+        採步驟切換
+        進度條動態更新
+     
+  5.back to top button   
 
-  5. 回到頂端按鈕
-        卷軸超過 100px 即出現，點擊可瞬間返回頂部。
-
-  6. 完整 RWD（手機／平板／桌面皆適用）
-        採 Bootstrap 網格建立所有區塊：
-        團隊介紹
-        服務項目
-        服務流程
-        聯絡我們（含地圖嵌入）
+  6. RWD
+     
+### GitHub Pages 網址	
+  https://shengjiekao.github.io/114_web_midterm_project/
