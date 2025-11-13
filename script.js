@@ -122,7 +122,7 @@ const processSteps = [
 const progressBar = document.getElementById('processProgressBar');
 const stepData = {
   1: { width: '33.3%', text: '步驟 1: 初步諮詢' },
-  2: { width: '66.6%', text: '步驟 2: E案件評估' },
+  2: { width: '66.6%', text: '步驟 2: 案件評估' },
   3: { width: '100%',  text: '步驟 3: 案件執行' }
 };
 
